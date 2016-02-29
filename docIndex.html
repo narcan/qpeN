@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>qpeN :: Senior Project Documentation Page</title>
+<link rel="stylesheet" type="text/css" href="stylesheet.css">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<link href="stylesheet.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<table align="center" height="800" width="900" border="0" cellspacing="0" cellpadding="0" class="mainTable">
+  <tr> 
+    <td height="50">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top"> <table align="right" width="600" border="0" cellspacing="0" cellpadding="5">
+        <tr> 
+          <td width="105" align="left" valign="top" rowspan="2">&nbsp;</td>
+          <td width="390" align="center" class="title">qpeN documentation</td>
+          <td width="105" align="right" valign="top" rowspan="2"><img src="Images/qpeNLogo.gif" align="left" width="70" height="90" border="0"></td>
+        </tr>
+        <tr> 
+          <td align="center" class="subtitle">RSA cryptosystem for ascii files</td>
+        </tr>
+        <tr> 
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td colspan="3"> <table border="0" align="center">
+              <tr> 
+                <td align="center" width="100"><H3><a href="index.html">Home</a></H3></td>
+                <td align="center" width="100"><H3><a href="abstract.html">Abstract</a></H3></td>
+                <td align="center" width="100"><H3><a href="papers.html">Papers</a></H3></td>
+                <td align="center" width="100"><H3><a href="application.html">Application</a></H3></td>
+                <td align="center" width="100"><H3><a href="docIndex.html">API</a></H3></td>
+                <td align="center" width="100"><H3><a href="experiments.html">Experiments</a></H3></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr> 
+          <td colspan="3" class="small">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td colspan="3" class="mid"> 
+            <!--*************begin actual page content*************-->
+            <table border="0" align="right" width="550">
+              <tr> 
+                <td align="center" class="mid"> <table border="0" align="right" width="550">
+                    <tr> 
+                      <td align="left" class="mid"> <a href="Documentation/generateKeysDocumentation/index.html">generateKeys 
+                        API</a> - This module accepts a username and a key size. 
+                        It generates 2 files with the given username as the file 
+                        name; a public key file with a '.pbk' extension and a 
+                        private key file with a '.pvk' extension. Both files contain 
+                        numerical keys of the size specified. The 'username.pbk' 
+                        file is the public key consisting of 'e' followed by a 
+                        space, followed by 'N'. The 'username.pvk' file is the 
+                        private key consisting of 'd' followed by a space, followed 
+                        by 'N'. 
+                        <p>The two files are created (or replace exisiting files 
+                          by the same name) in the current working directory (CWD). 
+                          This arrangement is comparable to saying that the keys 
+                          for an example input are: 
+                        <ul>
+                          <strong>For an input <em>"Alice 1024"</em>, the resulting 
+                          files would contain</strong>: 
+                          <li>The public key: [e,N] as "e N" in file 'Alice.pbk' 
+                            where e and N are 1024 bit numbers</li>
+                          <li>The private key: [d, N] as "d N" in file 'Alice.pvk' 
+                            where d and N are 1024 bit numbers</li>
+                        </ul></p>
+                        </td>
+                    </tr>
+                    <tr> 
+                      <td align="left" class="mid"> <a href="Documentation/encipherDocumentation/index.html">encipher 
+                        API</a> - This module accepts 3 file names. The first 
+                        file is the ASCII text file with the message to be enciphered. 
+                        The second file must be the public key file to be used 
+                        to encipher the plaintext. The third file must be the 
+                        private key file to be used in signing the enciphered 
+                        plaintext. 
+                        <p>It generates a 'plaintextFile.txt.cph' file containing 
+                          the result of enciphering the plaintext in the input 
+                          file ('plaintext.txt').</p>
+                        <p>The file is created (or replaces an exisiting file 
+                          by the same name) in the current working directory (CWD). 
+                          An example if Alice wants to encipher a message to Bob 
+                          so that he's sure that she sent it (Note: she must first 
+                          obtain Bob's public key, either in a directory or by 
+                          having him send it to her): 
+                        <ul>
+                          <strong>For an input <em>"plaintext.txt Bob.pbk Alice.pvk"</em>, 
+                          the result will be</strong>: 
+                          <li>An enciphered file 'plaintext.txt.cph'</li>
+                          <li>It will contain the result of enciphering 'plaintext.txt' 
+                            with 'Bob.pbk' and signing it with 'Alice.pvk'</li>
+                        </ul></p>
+                        </td>
+                    </tr>
+                    <tr> 
+                      <td align="left" class="mid"><a href="Documentation/decipherDocumentation/index.html">decipher 
+                        API</a> - This module accepts 3 file names. The first 
+                        file is the enciphered file containing a string of numbers 
+                        and spaces. The second file must be the public key file 
+                        to be used to authenticate the author of the ciphertext. 
+                        The third file must be the private key file to be used 
+                        in deciphering the authenticated plaintext. It returns 
+                        a text file with the ascii characters of the result of 
+                        translating the deciphered file with a '.txt' extension. 
+                        If all goes well, it will match the original message exactly. 
+                        <p>The resulting 'plaintextFile.txt.cph.txt' file is the 
+                          file containing the result of deciphering the ciphertext 
+                          in the input file ('plaintext.txt.cph').</p>
+                        <p>The file is created (or replaces an exisiting file 
+                          by the same name) in the current working directory (CWD). 
+                          An example if Bob wants to decipher an enciphered message 
+                          which is supposedly from Alice (Note: he must first 
+                          obtain Alice's public key, either in a directory or 
+                          by having her send it to him): 
+                        <ul>
+                          <strong>For an input <em>"plaintext.txt.cph Alice.pbk 
+                          Bob.pvk"</em>, the result will be</strong>: 
+                          <li>A deciphered file 'plaintext.txt.cph.txt'</li>
+                          <li>It will contain the result of authenticating 'plaintext.txt.cph' 
+                            with 'Alice.pbk' and deciphering it with 'Bob.pvk'</li>
+                        </ul></p>
+                        </td>
+                    </tr>
+                  </table>
+                  <!--*************end actual page content*************-->
+                </td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr> 
+          <td colspan="3">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td colspan="3"> <table border="0" cellspacing="0" cellpadding="0" align="center" class="copyright">
+              <tr> 
+                <td align="center" class="small">&copy;2004 Pedro Avila. All rights 
+                  reserved.</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</body>
+</html>
